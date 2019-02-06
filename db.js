@@ -1,11 +1,25 @@
 const { Client } = require('pg');
 
-const express = require('express');
+const connectionString = process.env.DATABASE_URL;
 
-const router = express.Router();
+const client = new Client({
+  connectionString,
+});
 
-const connectionString = process.env.DATABASE_URL; // sótt úr env gegnum dotenv pakka
+async function insert(name) {
+  // Klára að gera fall sem að tekur inn allt frá apply.js og setur það í db.
+  client.connect();
+  try {
+    const query = 'INSERT INTO students (name) VALUES ($1)';
+    const res = await client.query(query, [name]);
+    console.info(res.rows);
+  } catch (err) {
+    console.error(err);
+    // hér vantaði að kasta villu áfram sem var valdur að villu í lok sýnidæmis
+    throw err;
+  }
+}
 
-/* todo útfæra */
-
-module.exports = router;
+module.exports = {
+  insert,
+};

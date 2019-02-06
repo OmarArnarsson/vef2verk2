@@ -1,23 +1,23 @@
 <%- include('header') %>
 
     <h1>Atvinnuumsókn</h1>
-    <form method="post" action="/register">
+    <form method="post" action="/apply">
         <div>
             <div class="form__input">
                 <label for="name">Nafn</label>
-                <input id="name" name="name" value="">
+                <input id="name" name="name" value="<%= name %>">
             </div>
             <div class="form__input">
                 <label for="email">Netfang</label>
-                <input type="emal" id="email" name="email" value="">
+                <input type="emal" id="email" name="email" value="<%= email %>">
             </div>
             <div class="form__input">
                 <label for="phone">Sími</label>
-                <input id="phone" name="phone" value="">
+                <input id="phone" name="phone" value="<%= phone %>">
             </div>
             <div class="form__input">
                 <label for="intro">Kynning á þér:</label>
-                <textarea id="intro" name="intro"></textarea>
+                <textarea id="intro" name="intro" value="<%= intro %>"></textarea>
             </div>
             <!-- Todo finna hvernig á að tengja labels tög við virkni-->
         </div>
@@ -43,5 +43,11 @@
         </div>
         
     </form>
+
+    <ul>
+        <% errors.forEach((error) => { %>
+            <li><%= error.msg %></li>
+        <% }) %>
+    </ul>
 
 <%- include('footer') %>
