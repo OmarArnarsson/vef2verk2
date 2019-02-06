@@ -11,6 +11,60 @@
 
 html {
   box-sizing: border-box;
+  font-size: 16px;
+  font-family: 'Open sans regular';
+  padding: 2em;
+  max-width: 1200px;
 }
 
-/* todo útfæra útlit */
+
+h1,h2 {
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+h1 {
+  font-size: 3em;
+  padding-bottom: 0.5em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+.form__input {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  padding: 0.5em;
+}
+
+input {
+  padding: 0.5em;
+  width: 80%;
+  font-size: 1em;
+}
+
+textarea {
+  padding: 0.5em;
+  width: 80%;
+  font-size: 1em;
+}
+
+.form__radio {
+  padding: 1em;
+}
+
+.radio {
+  width: 0%;
+}
+
+.form__button {
+  padding: 0.5em;
+}
+
+label {
+  font-size: 1.375em;
+  padding-right: 1em;
+  width: 20%;
+}
+
