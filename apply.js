@@ -1,5 +1,6 @@
 const express = require('express');
 const { check, validationResult } = require('express-validator/check');
+const { sanitize } = require('express-validator/filter');
 
 const { insert } = require('./db');
 
@@ -19,22 +20,39 @@ const validation = [
 ];
 
 const sanitazion = [
-
+  sanitize('name')
+    .trim()
+    .escape(),
+  sanitize('netfang')
+    .normalizeEmail(),
+  sanitize('simi')
+    .blacklist('-')
+    .blacklist(' ')
+    .toInt(),
 ];
 
 function form(req, res) {
   const title = 'Umsókn';
-  res.render('index', { title, name: '', netfang: '', simi: '', texti: '', errors: [] });
+  res.render('index', {
+    title, name: '', netfang: '', simi: '', texti: '', errors: [],
+  });
 }
 
 async function apply(req, res) {
-  const { body: { name, netfang, simi, texti, starf } = {} } = req;
+  const {
+    body: {
+      name, netfang, simi, texti, starf,
+    } = {},
+  } = req;
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
     const errorMessages = errors.array();
     const title = 'No bueno';
-    res.render('index', { title, name, netfang, simi, texti, starf, errors: errorMessages });
+    res.render('index',
+      {
+        title, name, netfang, simi, texti, starf, errors: errorMessages,
+      });
   } else {
     try {
       await insert(name, netfang, simi, texti, starf);
@@ -47,7 +65,7 @@ async function apply(req, res) {
   }
 }
 
-router.get('/', (form));
-router.post('/apply', validation, sanitazion, (apply));
+router.get('/', form);
+router.post('/apply', validation, sanitazion, catchErrors(apply));
 
 module.exports = router;

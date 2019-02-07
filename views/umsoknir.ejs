@@ -14,7 +14,8 @@
             <div class="takkar__yfirlit">
                 <div>
                         <% if(!umsoknir.processed){ %>
-                            <form>
+                            <form action="/applications/parse/<%= umsoknir.id %>" method="post">
+                                <input type="hidden" name="id" value="<%= umsoknir.id %>">
                                 <button>Vinna umsókn</button>
                             </form>
                           <% } else{ %>  
@@ -22,7 +23,8 @@
                          <% } %>
                 </div>
                 <div>
-                    <form>
+                    <form action="/applications/delete/<%= umsoknir.id %>" method="post">
+                    <input type="hidden" name="id" value="<%= umsoknir.id %>">
                         <button>
                             Eyða umsókn
                         </button>
