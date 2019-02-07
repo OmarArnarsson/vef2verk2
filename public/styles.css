@@ -68,3 +68,25 @@ label {
   width: 20%;
 }
 
+.umsokn {
+  padding: 1em;
+  padding-left: 0em;
+}
+
+.texti__yfirlit {
+  word-wrap: break-word;
+}
+
+.texti__gap {
+  padding-bottom: 1em;
+  white-space: nowrap;
+  white-space: initial;
+}
+
+.takkar__yfirlit {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+
+

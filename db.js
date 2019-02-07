@@ -18,8 +18,25 @@ async function insert(name, netfang, simi, texti, starf) {
     // hér vantaði að kasta villu áfram sem var valdur að villu í lok sýnidæmis
     throw err;
   }
+  await client.end;
 }
+
+/* async function eyda(id) {
+  // Klára að gera fall sem að tekur inn allt frá apply.js og setur það í db.
+  client.connect();
+  try {
+    const query = 'DELETE FROM applications WHERE id == $1';
+    const res = await client.query(query, [id]);
+    console.info(res.rows);
+  } catch (err) {
+    console.error(err);
+    // hér vantaði að kasta villu áfram sem var valdur að villu í lok sýnidæmis
+    throw err;
+  }
+  await client.end;
+} */
 
 module.exports = {
   insert,
+  /* eyda, */
 };

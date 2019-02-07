@@ -6,6 +6,6 @@ CREATE TABLE applications (
     texti varchar(1000),
     starf varchar(16),
     processed boolean default false,
-    created timestamp with time zone not null default current_timestamp,
-    updated timestamp with time zone not null default current_timestamp
+    created timestamp without time zone not null default current_timestamp,
+    updated timestamp without time zone not null default current_timestamp
 );

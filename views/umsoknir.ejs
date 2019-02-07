@@ -1,0 +1,36 @@
+<%- include header %>
+    <h1>Atvinnuumsóknir</h1>
+
+    <% listi.forEach((umsoknir) => { %>
+        <div class="umsokn">
+            <div class="texti__yfirlit">
+                <h2><%= umsoknir.name %></h2>
+                <a href="mailto:<%= umsoknir.netfang %>"><%= umsoknir.netfang %></a>
+                <p><%= umsoknir.simi %></p>
+                <p class="texti__gap">Umsókn send: <%= umsoknir.created %></p>
+                <p class="texti__gap"><%= umsoknir.texti %></p>
+            </div>
+
+            <div class="takkar__yfirlit">
+                <div>
+                        <% if(!umsoknir.processed){ %>
+                            <form>
+                                <button>Vinna umsókn</button>
+                            </form>
+                          <% } else{ %>  
+                            &#x2714; Umsókn unnin: <%= umsoknir.updated %>
+                         <% } %>
+                </div>
+                <div>
+                    <form>
+                        <button>
+                            Eyða umsókn
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    <% }) %>
+
+<%- include footer %>
