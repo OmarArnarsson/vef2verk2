@@ -11,9 +11,11 @@ function catchErrors(fn) {
 
 const validation = [
   check('name').isLength({ min: 1 }).withMessage('Nafn má ekki vera tómt'),
-  check('email').isLength({ min: 1 }).withMessage('Tölvupóstfang má ekki vera tómt'),
-  check('phone').isLength({ min: 7, max: 8 }).withMessage('Símanúmer þarf að vera 7 stafir'),
-  check('intro').isLength({ min: 100 }).withMessage('Kynning þarf að vera allavega 100 stafir'),
+  check('netfang').isLength({ min: 1 }).withMessage('Tölvupóstfang má ekki vera tómt'),
+  check('netfang').isEmail().withMessage('Netfang þarf að vera á forminu siggi@siggi.is'),
+  check('simi').isLength({ min: 7 }).withMessage('Símanúmer þarf að vera 7 stafir'),
+  check('simi').isLength({ max: 8 }).withMessage('Símanúmer þarf að vera 7 stafir'),
+  check('texti').isLength({ min: 100 }).withMessage('Kynning þarf að vera allavega 100 stafir'),
 ];
 
 const sanitazion = [
@@ -21,28 +23,31 @@ const sanitazion = [
 ];
 
 function form(req, res) {
-  res.render('index', { name: '', email: '', phone: '', intro: '', errors: [] });
+  const title = 'Umsókn';
+  res.render('index', { title, name: '', netfang: '', simi: '', texti: '', errors: [] });
 }
 
 async function apply(req, res) {
-  const { body: { name, email, phone, intro } = {} } = req;
+  const { body: { name, netfang, simi, texti, starf } = {} } = req;
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
     const errorMessages = errors.array();
-    res.render('index', { name, errors: errorMessages });
+    const title = 'No bueno';
+    res.render('index', { title, name, netfang, simi, texti, starf, errors: errorMessages });
   } else {
     try {
-      await insert(name, email, phone, intro);
+      await insert(name, netfang, simi, texti, starf);
     } catch (e) {
       console.error('Gat ekki búið til umsókn fyrir:', name, e);
       throw e;
     }
-    res.render('takk');
+    const title = 'Þakka þér';
+    res.render('takk', { title });
   }
 }
 
-router.get('/', catchErrors(form));
-router.post('/apply', validation, sanitazion, catchErrors(apply));
+router.get('/', (form));
+router.post('/apply', validation, sanitazion, (apply));
 
 module.exports = router;
