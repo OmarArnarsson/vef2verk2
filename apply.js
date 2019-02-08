@@ -12,12 +12,13 @@ function catchErrors(fn) {
 }
 
 const validation = [
-  check('name').isLength({ min: 1 }).withMessage('Nafn má ekki vera tómt'),
-  check('netfang').isLength({ min: 1 }).withMessage('Tölvupóstfang má ekki vera tómt'),
-  check('netfang').isEmail().withMessage('Netfang þarf að vera á forminu siggi@siggi.is'),
-  check('simi').isLength({ min: 7 }).withMessage('Símanúmer þarf að vera 7 stafir'),
-  check('simi').isLength({ max: 8 }).withMessage('Símanúmer þarf að vera 7 stafir'),
-  check('texti').isLength({ min: 100 }).withMessage('Kynning þarf að vera allavega 100 stafir'),
+  check('name').isLength({ min: 1 }).withMessage('Nafn má ekki vera tómt!'),
+  check('netfang').isLength({ min: 1 }).withMessage('Tölvupóstfang má ekki vera tómt!'),
+  check('netfang').isEmail().withMessage('Netfang þarf að vera á forminu siggi@siggi.is!'),
+  check('simi').isLength({ min: 1 }).withMessage('Símanúmer má ekki vera tómt!'),
+  check('simi').matches(/^[0-9]{3}(-|\s)?[0-9]{4}$/).withMessage('Símanúmer þarf að vera á forminu [6660777],[666-0777],[666 0777]!'),
+  check('texti').isLength({ min: 100 }).withMessage('Kynning þarf að vera allavega 100 stafir!'),
+  check('starf').matches(/^(hönnuður|forritari|verkefnastjóri)$/).withMessage('Velja þarf hvaða starf er sótt um!'),
 ];
 
 const sanitazion = [

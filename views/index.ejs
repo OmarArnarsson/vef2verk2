@@ -5,36 +5,38 @@
         <div>
             <div class="form__input">
                 <label for="name">Nafn</label>
-                <input id="name" name="name" value="<%= data.name %>">
+                <input id="name" name="name" value="<%= data.name %>" class="<%= locals.isInvalid('name', errors) ? 'invalid' : '' %>">
             </div>
             <div class="form__input">
                 <label for="netfang">Netfang</label>
-                <input type="text" id="netfang" name="netfang" value="<%= data.netfang %>">
+                <input type="text" id="netfang" name="netfang" value="<%= data.netfang %>" class="<%= locals.isInvalid('netfang', errors) ? 'invalid' : '' %>">
             </div>
             <div class="form__input">
                 <label for="simi">Sími</label>
-                <input id="simi" name="simi" value="<%= data.simi %>">
+                <input id="simi" name="simi" value="<%= data.simi %>" class="<%= locals.isInvalid('simi', errors) ? 'invalid' : '' %>">
             </div>
             <div class="form__input">
                 <label for="texti">Kynning á þér:</label>
-                <textarea id="texti" name="texti" value="<%= data.texti %>"></textarea>
+                <textarea id="texti" name="texti" class="<%= locals.isInvalid('texti', errors) ? 'invalid' : '' %>"><%= data.texti %></textarea>
             </div>
             <!-- Todo finna hvernig á að tengja labels tög við virkni-->
         </div>
 
         <div>
             <h2>Starf sem sótt er um:</h3>
-            <div class="form__radio">
-                <input class="radio" type="radio" id="starf1" name="starf" value="forritari">
-                <label for="starf1">Forritari</label>
-            </div>
-            <div class="form__radio">
-                <input class="radio" type="radio" id="starf2" name="starf" value="hönnuður">
-                <label for="starf2">Hönnuður</label>
-            </div>
-            <div class="form__radio">
-                <input class="radio" type="radio" id="starf3" name="starf" value="verkefnastjóri">
-                <label for="starf3">Verkefnastjóri</label>
+            <div class="<%= locals.isInvalid('starf', errors) ? 'invalid' : '' %>">
+                <div class="form__radio">
+                    <input class="radio" type="radio" id="starf1" name="starf" value="forritari"<% if (data.starf == 'forritari') { %> checked="checked" <% } %>>
+                    <label for="starf1">Forritari</label>
+                </div>
+                <div class="form__radio">
+                    <input class="radio" type="radio" id="starf2" name="starf" value="hönnuður"<% if (data.starf == 'hönnuður') { %> checked="checked" <% } %>>
+                    <label for="starf2">Hönnuður</label>
+                </div>
+                <div class="form__radio">
+                    <input class="radio" type="radio" id="starf3" name="starf" value="verkefnastjóri"<% if (data.starf == 'verkefnastjóri') { %> checked="checked" <% } %>>
+                    <label for="starf3">Verkefnastjóri</label>
+                </div>
             </div>
         </div>
 

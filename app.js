@@ -12,7 +12,6 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, 'public')));
-/* todo aðrar stillingar á express appi */
 app.use(applications);
 app.use(apply);
 
@@ -25,6 +24,17 @@ function errorHandler(error, req, res, next) { // eslint-disable-line
   res.status(500).render('error', { title: 'Villa', error });
 }
 
+function isInvalid(flokkur, errorMessages) {
+  let err = '';
+  errorMessages.forEach((villa) => {
+    if (flokkur === villa.param) {
+      err = 'invalid';
+    }
+  });
+  return err;
+}
+
+app.locals.isInvalid = isInvalid;
 app.use(notFoundHandler);
 app.use(errorHandler);
 

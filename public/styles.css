@@ -62,6 +62,7 @@ textarea {
 
 .form__button {
   padding: 0.5em;
+  padding-bottom: 1em;
 }
 
 label {
@@ -91,6 +92,11 @@ label {
   flex-wrap: nowrap;
 }
 
+.invalid {
+  background-color: #fbb;
+  border: #855;
+}
+
 button:hover {
   transition-timing-function: ease-in;
   transition-duration: 300ms;
@@ -100,6 +106,10 @@ button:hover {
 @media (max-width: 400px) {
   .form__input {
     display: inline-block;
+  }
+
+  .takkar__yfirlit {
+    word-break: break-word;
   }
 }
 
