@@ -7,7 +7,7 @@
                 <h2><%= umsoknir.name %></h2>
                 <a href="mailto:<%= umsoknir.netfang %>"><%= umsoknir.netfang %></a>
                 <p><%= umsoknir.simi %></p>
-                <p class="texti__gap">Umsókn send: <%= umsoknir.created %></p>
+                <p class="texti__gap">Umsókn send: <%= umsoknir.created.toISOString() %></p>
                 <p class="texti__gap"><%= umsoknir.texti %></p>
             </div>
 
@@ -19,7 +19,7 @@
                                 <button>Vinna umsókn</button>
                             </form>
                           <% } else{ %>  
-                            &#x2714; Umsókn unnin: <%= umsoknir.updated %>
+                            &#x2714; Umsókn unnin: <%= umsoknir.updated.toISOString() %>
                          <% } %>
                 </div>
                 <div>

@@ -66,7 +66,7 @@ async function parse(id) {
   });
   await client.connect();
   try {
-    const query = 'UPDATE applications SET processed = \'t\' WHERE id = $1';
+    const query = 'UPDATE applications SET processed = \'t\', updated = current_timestamp WHERE id = $1';
     const res = await client.query(query, [id]);
     console.info(res.rows);
   } catch (err) {
