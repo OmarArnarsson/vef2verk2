@@ -1,3 +1,4 @@
+const xss = require('xss');
 const express = require('express');
 const { check, validationResult } = require('express-validator/check');
 const { sanitize } = require('express-validator/filter');
@@ -32,18 +33,27 @@ const sanitazion = [
 ];
 
 function form(req, res) {
+  const data = {};
   const title = 'Umsókn';
   res.render('index', {
-    title, name: '', netfang: '', simi: '', texti: '', errors: [],
+    title, data, errors: [],
   });
 }
 
 async function apply(req, res) {
   const {
     body: {
-      name, netfang, simi, texti, starf,
+      name = '', netfang = '', simi = '', texti = '', starf = '',
     } = {},
   } = req;
+
+  const data = {
+    name: xss(name),
+    netfang: xss(netfang),
+    simi: xss(simi),
+    texti: xss(texti),
+    starf: xss(starf),
+  };
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
@@ -51,7 +61,7 @@ async function apply(req, res) {
     const title = 'No bueno';
     res.render('index',
       {
-        title, name, netfang, simi, texti, starf, errors: errorMessages,
+        title, data, errors: errorMessages,
       });
   } else {
     try {

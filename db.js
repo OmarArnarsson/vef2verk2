@@ -4,7 +4,6 @@ const connectionString = process.env.DATABASE_URL;
 
 
 async function insert(name, netfang, simi, texti, starf) {
-  // Klára að gera fall sem að tekur inn allt frá apply.js og setur það í db.
   const client = new Client({
     connectionString,
   });
@@ -15,7 +14,6 @@ async function insert(name, netfang, simi, texti, starf) {
     console.info(res.rows);
   } catch (err) {
     console.error(err);
-    // hér vantaði að kasta villu áfram sem var valdur að villu í lok sýnidæmis
     throw err;
   } finally {
     await client.end();
@@ -23,7 +21,6 @@ async function insert(name, netfang, simi, texti, starf) {
 }
 
 async function select() {
-  // Klára að gera fall sem að tekur inn allt frá apply.js og setur það í db.
   const client = new Client({
     connectionString,
   });
@@ -33,7 +30,6 @@ async function select() {
     return res;
   } catch (err) {
     console.error(err);
-    // hér vantaði að kasta villu áfram sem var valdur að villu í lok sýnidæmis
     throw err;
   } finally {
     await client.end();
@@ -41,7 +37,6 @@ async function select() {
 }
 
 async function eyda(id) {
-  // Klára að gera fall sem að tekur inn allt frá apply.js og setur það í db.
   const client = new Client({
     connectionString,
   });
@@ -52,7 +47,6 @@ async function eyda(id) {
     console.info(res.rows);
   } catch (err) {
     console.error(err);
-    // hér vantaði að kasta villu áfram sem var valdur að villu í lok sýnidæmis
     throw err;
   } finally {
     await client.end();
@@ -60,7 +54,6 @@ async function eyda(id) {
 }
 
 async function parse(id) {
-  // Klára að gera fall sem að tekur inn allt frá apply.js og setur það í db.
   const client = new Client({
     connectionString,
   });
@@ -71,7 +64,6 @@ async function parse(id) {
     console.info(res.rows);
   } catch (err) {
     console.error(err);
-    // hér vantaði að kasta villu áfram sem var valdur að villu í lok sýnidæmis
     throw err;
   } finally {
     await client.end();

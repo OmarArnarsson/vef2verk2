@@ -91,4 +91,16 @@ label {
   flex-wrap: nowrap;
 }
 
+button:hover {
+  transition-timing-function: ease-in;
+  transition-duration: 300ms;
+  background-color: #bbb;
+}
+
+@media (max-width: 400px) {
+  .form__input {
+    display: inline-block;
+  }
+}
+
 
